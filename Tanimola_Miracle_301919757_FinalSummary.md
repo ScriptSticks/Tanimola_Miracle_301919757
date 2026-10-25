@@ -4,7 +4,7 @@
 
 ## Case study
 
-My case study is Bank Platform. I designed the database for bank operations staff review accounts and transfer activity. and customers initiate transfers between their accounts., with separate tables named customer, account and transfer. It supports these operations: create customers and accounts with synthetic identifiers and details; record a transfer only when both accounts exist and the source can cover it; commit each transfer and both balance changes atomically; roll back all changes on failure; benchmark a date-range transfer filter on 50000 synthetic transfer rows, comparing the query plan with and without a B-tree index on initiated_at.
+My case study is Bank Platform. I designed the database for bank operations staff to review accounts and audit transfer activities. Customers initiate transfers between their accounts, with separate tables named customer, account and transfer. It supports different operations such as create customers and accounts with identifiers and details. Transfers are recorded only when both accounts exist and the source can cover it after which each transfer are committed and both balance changes automically. In case of failure, there's a rollback plan.
 
 ## Portfolio 1: Database Design and Modelling
 
