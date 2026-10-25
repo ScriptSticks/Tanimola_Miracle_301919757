@@ -1,7 +1,13 @@
-# Miracle Tanimola — MIT 8103
+# Bank Platform
 
-Student ID: 301919757
+Miracle Tanimola · Student ID 301919757
 
-Bank Platform
+The portfolio uses fictional records for Bank Platform.
 
-The portfolio is being generated. Completed stages will appear in the commit history.
+- [Portfolio 1](portfolio-1-database-design/)
+- [Portfolio 2](portfolio-2-query-optimisation/)
+- [Portfolio 3](portfolio-3-transactions-concurrency/)
+- [Portfolio 4](portfolio-4-nosql/)
+- [Portfolio 5](portfolio-5-distributed-cloud/)
+
+[Final summary](Tanimola_Miracle_301919757_FinalSummary.md) · [PDF](Tanimola_Miracle_301919757_FinalSummary.pdf)
