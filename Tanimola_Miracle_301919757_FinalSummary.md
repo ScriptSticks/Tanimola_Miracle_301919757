@@ -4,11 +4,12 @@
 
 ## Case study
 
-My case study is Bank Platform. I designed the database for bank operations staff to review accounts and audit transfer activities. Customers initiate transfers between their accounts, with separate tables named customer, account and transfer. It supports different operations such as create customers and accounts with identifiers and details. Transfers are recorded only when both accounts exist and the source can cover it after which each transfer are committed and both balance changes automically. In case of failure, there's a rollback plan.
+My case study is Bank Platform. I designed the database for customers initiating transfers between their accounts and bank operations staff reviewing accounts and transfer activity, using separate customer, account and transfer tables. It supports creating customers and accounts with synthetic identifiers and details; checking that both accounts exist and the source has sufficient funds; committing transfers and both balance changes atomically or rolling back on failure; and
+benchmarking a date-range filter over 50,000 synthetic transfer rows with and without a B-tree index on initiated_at.
 
 ## Portfolio 1: Database Design and Modelling
 
-I organised the relational design into 3 tables. Primary keys identify records, foreign keys preserve the links, and checks enforce the stated business rules. An account balance must be greater than or equal to zero after each committed update. The normalisation examples show the sample data at 1NF, 2NF and 3NF. All 13 deliberately invalid inserts were rejected without changing the valid sample rows.
+I organized the relational design into 3 tables. Primary keys identify records, foreign keys preserve the links, and checks enforce the stated business rules. An account balance must be greater than or equal to zero after each committed update. The normalisation examples show the sample data at 1NF, 2NF and 3NF. All 13 deliberately invalid inserts were rejected without changing the valid sample rows.
 
 ![Bank Platform ER diagram](images/Tanimola_Miracle_301919757_ERDiagram.png)
 
@@ -43,11 +44,13 @@ I proposed three MongoDB replica members across separate failure zones. The disc
 
 ## Individual reflection
 
-I kept customer, account, transfer in separate tables so their details could be maintained without repeating them in every related record. An account balance must be greater than or equal to zero after each committed update. The constraint tests check this alongside the required values and record links. One issue illustrated by the two-session exercise is that both sessions can read the same value before either update is committed. Locking the row before reading preserves both increments. The index comparison also shows why I need to check the execution plan as well as the final answer: the same result can require different amounts of database work.
+This project helped me apply MIT 8103 Advanced Database Systems to a banking platform. I kept customer, account and transfer in separate tables so the customer and account details would not be repeated in every transaction. Primary keys, foreign keys and unique values maintain their relationships, while constraints enforce the rules. An account balance must stay greater than or equal to zero after each committed update. The invalid-insert tests checked this alongside the
+required values and links. The two-session exercise showed how concurrency can affect consistency. Both sessions can read the same value before either update commits, causing a lost increment without locking. Using SELECT FOR UPDATE made Session B wait and preserved both increments. COMMIT and ROLLBACK also showed how transaction boundaries protect the data. The indexing exercise showed why a correct query result is not enough on its own. A B-tree index on initiated_at improved the median date-range lookup from 2.452 ms to 0.324 ms, while returning the same records. Reviewing the execution plan helped me connect the performance difference to how the database carried out the query. MongoDB helped me understand how document records support varied bank event details,
+although validation is still important. The distributed exercise introduced replication, availability, backups and sharding trade-offs. Overall, the project reinforced the need to design carefully, test constraints and concurrent updates, inspect execution plans and plan for recovery. These exercises made the Bank Platform case more practical.
 
 ## AI-use declaration
 
-I used GitHub Copilot and the portfolio generator to help prepare the database model, scripts and explanations. The generator ran the PostgreSQL and MongoDB exercises, checked their outputs and captured the result images.  I remain responsible for checking and explaining the submitted work.
+I used GitHub Copilot to help prepare the database model, scripts and explanations. I remain responsible for checking and explaining the submitted work.
 
 ## References
 
