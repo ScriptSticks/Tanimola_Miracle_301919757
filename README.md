@@ -45,7 +45,7 @@ The database schema enforces these structural and value constraints. The broader
 | 4 | [NoSQL and Advanced Data Models](portfolio-4-nosql/) | MongoDB `bank_events` collection, transfer event snapshots, flexible metadata, schema validation, indexes and queries | **2 event documents** inserted; invalid date type (code `121`) and duplicate event ID (code `11000`) rejected |
 | 5 | [Distributed and Cloud Database](portfolio-5-distributed-cloud/) | Proposed three-member MongoDB replica set, majority acknowledgement, elections, replication lag, sharding trade-offs, backups and security | **Design discussion only**; no live replica set, cloud deployment or failover experiment was performed |
 
-Each portfolio directory contains its own detailed README, implementation files where applicable, result explanations and supporting screenshots.
+Each portfolio directory contains its own detailed README, implementation files where applicable, result explanations and supporting screenshots
 
 ## Repository structure
 
